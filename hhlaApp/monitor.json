@@ -1,0 +1,391 @@
+[
+    {
+        "id": "2f095d11.54dfb2",
+        "type": "ui_template",
+        "z": "65285770.0abdb8",
+        "group": "f8767680.907618",
+        "name": "",
+        "order": 0,
+        "width": "16",
+        "height": "9",
+        "format": "<head>\n    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/icon?family=Material+Icons\">\n    <style>\n        .headline{\n            background-color: #3BB9FF;\n            margin-bottom: 30px;\n            border: 2px solid blue;\n            border-radius: 12px;\n            border-width: 2px;\n            text-align: center;\n            text-decoration: underline;\n            padding: 15px;\n            box-shadow: 5px 6px lightgray;\n        }\n        .subheadline{\n            margin-bottom: 5px;\n            text-decoration: underline;\n            padding: 20px;\n            font-weight: bold;\n            font-size: 32px;\n            color: #0041C2;\n        }\n        .order{\n            background-color: orange;\n            padding: 25px;\n            margin-bottom: 20px;\n            border-style: solid;\n            border-radius: 10px;\n            border-width: 2px;\n            box-shadow: 5px 6px lightgray;\n            font-size: 36px;\n        }\n    </style>\n</head>\n<div class=\"headline\">\n    <h1>\n        Auftragsliste\n    </h1>\n</div>\n<div layout=\"row\" layout-align=\"center center\" class=\"subheadline\">\n  <span flex>Container Nummer</span>\n  <span flex>Tanktyp</span>\n  <span flex>Deckel</span>\n  <span flex>Inhalt</span>\n  <span flex>Verschmutzungsgrad</span>\n</div>\n\n<div layout=\"row\" layout-align=\"center center\" ng-repeat=\"item in msg.payload\" class=\"order\">\n    <span flex>{{item.container_id}}</span>\n    <span flex>{{item.container_type}}</span>\n    <span flex>{{item.anzahl_luken}}</span>\n    <span flex>{{item.content}}</span>\n    <span flex>{{item.verschmutzung}}</span>\n</div>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 611,
+        "y": 309,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a4e245f3.3de468",
+        "type": "debug",
+        "z": "65285770.0abdb8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 598,
+        "y": 422,
+        "wires": []
+    },
+    {
+        "id": "fdd1338f.330be",
+        "type": "http in",
+        "z": "65285770.0abdb8",
+        "name": "",
+        "url": "/all",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 128.5,
+        "y": 304,
+        "wires": [
+            [
+                "2f095d11.54dfb2",
+                "78c1501a.329bb",
+                "a4e245f3.3de468"
+            ]
+        ]
+    },
+    {
+        "id": "78c1501a.329bb",
+        "type": "http response",
+        "z": "65285770.0abdb8",
+        "name": "response",
+        "statusCode": "200",
+        "headers": {},
+        "x": 255.5,
+        "y": 403,
+        "wires": []
+    },
+    {
+        "id": "f9ad7184.c729f",
+        "type": "ui_template",
+        "z": "65285770.0abdb8",
+        "group": "c8d6733b.9f819",
+        "name": "gasmaske",
+        "order": 4,
+        "width": "1",
+        "height": "2",
+        "format": "<html>\n<img src=\"https://upload.wikimedia.org/wikipedia/commons/d/d6/ISO_7010_M017.svg\" width=\"30\" height=\"30\">\n</html>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "templateScope": "local",
+        "x": 614,
+        "y": 778,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "23468ee1.9f45f2",
+        "type": "ui_template",
+        "z": "65285770.0abdb8",
+        "group": "c8d6733b.9f819",
+        "name": "auffanggurt",
+        "order": 5,
+        "width": "1",
+        "height": "2",
+        "format": "<html>\n<img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/ISO_7010_M018.svg/420px-ISO_7010_M018.svg.png\" width=\"60\" height=\"60\">\n</html>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "templateScope": "local",
+        "x": 614,
+        "y": 813,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "24807a82.ae7436",
+        "type": "ui_template",
+        "z": "65285770.0abdb8",
+        "group": "c8d6733b.9f819",
+        "name": "schutzbrille",
+        "order": 6,
+        "width": "1",
+        "height": "2",
+        "format": "<html>\n<img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/ISO_7010_M004.svg/420px-ISO_7010_M004.svg.png\" width=\"60\" height=\"60\">\n</html>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "templateScope": "local",
+        "x": 612,
+        "y": 850,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "253a202b.41dfb",
+        "type": "ui_template",
+        "z": "65285770.0abdb8",
+        "group": "c8d6733b.9f819",
+        "name": "handschutz",
+        "order": 7,
+        "width": "1",
+        "height": "2",
+        "format": "<html>\n<img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/ISO_7010_M009.svg/420px-ISO_7010_M009.svg.png\" width=\"60\" height=\"60\">\n</html>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "templateScope": "local",
+        "x": 612,
+        "y": 890,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "15446262.9eb6de",
+        "type": "ui_template",
+        "z": "65285770.0abdb8",
+        "group": "d49a9e73.ca2f4",
+        "name": "job_list",
+        "order": 2,
+        "width": "8",
+        "height": "16",
+        "format": "<style>\n.round {\n    border: 2px solid black;\n    border-radius: 12px;\n    padding: 15px;\n    font-size:32px;\n    color: black;\n    margin-bottom:15px;\n    background-color: orange;\n    box-shadow:5px 6px lightgrey;\n}\n.head {\n    border: 2px solid #0041C2;\n    border-radius: 12px;\n    padding: 12px;\n    text-align:center;\n    text-decoration: underline;\n    color: black;\n    margin-bottom:15px;\n    background-color: #3bb9ff;\n    box-shadow:5px 6px lightgrey;\n}\n.tab {\n    padding-left:15px;\n    padding-right:25px;\n    margin-bottom:5px;\n    font-size:32px;\n    font-weight:bold;\n    text-decoration: underline;\n    color: #0041C2;\n}\n</style>\n<div class=\"head\">\n    <h1>Aufgaben</h1>        \n</div>\n\n<div layout=\"row\" layout-align=\"start center\" class=\"tab\">\n    <span flex>Schritt</span>\n    <span flex>Medium</span>\n    <span flex>Temp.</span>\n    <span flex>Chemi.</span>\n    <span flex>Zeit</span>\n    <span flex>Status</span>\n \n</div>\n<div layout=\"row\" layout-align=\"start center\" class=\"round\" ng-repeat=\"x in msg.payload.cleaning_steps\">\n    <span flex>{{x.cleaning_step.step_nr}}</span>\n    <span flex>{{x.cleaning_step.medium}}</span>\n    <span flex>{{x.cleaning_step.temperature}}</span>\n    <span flex>{{x.cleaning_step.chemical}}</span>\n    <span flex>{{x.cleaning_step.duration}}</span>\n    <span flex>{{x.cleaning_step.status}}</span>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 606,
+        "y": 721,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ba2b2893.481f98",
+        "type": "ui_template",
+        "z": "65285770.0abdb8",
+        "group": "9eb7e522.bd4198",
+        "name": "first_page_headline",
+        "order": 0,
+        "width": "3",
+        "height": "2",
+        "format": "<style>\n.head {\n    border: 2px solid #0041C2;\n    border-radius: 12px;\n    padding: 12px;\n    text-align:center;\n    text-decoration: underline;\n    color: black;\n    margin-bottom:15px;\n    background-color: #3bb9ff;\n    box-shadow:5px 6px lightgrey;\n}\n</style>\n<div class=\"head\">\n    <h1>Spezifikation</h1>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 627,
+        "y": 571,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a16457fd.ae38b8",
+        "type": "ui_template",
+        "z": "65285770.0abdb8",
+        "group": "9eb7e522.bd4198",
+        "name": "spezifikation",
+        "order": 0,
+        "width": "3",
+        "height": "16",
+        "format": "<style>\n.spezi {\n    font-size:36px;\n    color: blue;\n    margin-bottom:26px;\n}\n.spezi2 {\n    font-size:24px;\n    color: black;\n}\n.border {\n    border: 2px solid black;\n}\n</style>\n<div>\n<div class=\"spezi2\">Container Nummer:</div>\n<div class=\"spezi\">{{msg.payload.container_id}}</div>\n<div class=\"spezi2\">Tanktyp:</div>\n<div class=\"spezi\">{{msg.payload.container_type}}</div>\n<div class=\"spezi2\">Inhalt:</div>\n<div class=\"spezi\">{{msg.payload.content}}</div>\n<div class=\"spezi2\">Schwallwände:</div>\n<div class=\"spezi\">{{msg.payload.schwallwaende}}\n</div><div class=\"spezi2\">Deckel:</div>\n<div class=\"spezi\">{{msg.payload.anzahl_luken}}</div>\n<div class=\"spezi2\">Verschmutzungsgrad:</div>\n<div class=\"spezi\">{{msg.payload.verschmutzung}}</div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 611,
+        "y": 634,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "17c9689f.244d07",
+        "type": "ui_template",
+        "z": "65285770.0abdb8",
+        "group": "c8d6733b.9f819",
+        "name": "schutzkleidung",
+        "order": 8,
+        "width": "1",
+        "height": "2",
+        "format": "<html>\n<img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/ISO_7010_M010.svg/420px-ISO_7010_M010.svg.png\" width=\"60\" height=\"60\">\n</html>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "templateScope": "local",
+        "x": 622,
+        "y": 927,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5c3033d1.f4ce9c",
+        "type": "ui_template",
+        "z": "65285770.0abdb8",
+        "group": "c8d6733b.9f819",
+        "name": "rauchen",
+        "order": 3,
+        "width": "1",
+        "height": "2",
+        "format": "<html>\n<img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/ISO_7010_P002.svg/512px-ISO_7010_P002.svg.png\" width=\"60\" height=\"60\">\n</html>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "templateScope": "local",
+        "x": 600,
+        "y": 965,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "66fd6143.4c8c3",
+        "type": "ui_template",
+        "z": "65285770.0abdb8",
+        "group": "c8d6733b.9f819",
+        "name": "feuer",
+        "order": 2,
+        "width": "1",
+        "height": "2",
+        "format": "<html>\n<img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/ISO_7010_P003.svg/575px-ISO_7010_P003.svg.png\" width=\"60\" height=\"60\">\n</html>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "templateScope": "local",
+        "x": 592,
+        "y": 1002,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b9d4e2a6.d8c2d",
+        "type": "ui_template",
+        "z": "65285770.0abdb8",
+        "group": "c8d6733b.9f819",
+        "name": "ex",
+        "order": 1,
+        "width": "2",
+        "height": "3",
+        "format": "<html>\n<img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/D-W021_Warnung_vor_explosionsfaehiger_Atmosphaere_ty.svg/624px-D-W021_Warnung_vor_explosionsfaehiger_Atmosphaere_ty.svg.png\" width=\"60\" height=\"60\">\n</html>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "templateScope": "local",
+        "x": 588,
+        "y": 1041,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "353eda58.53b786",
+        "type": "http in",
+        "z": "65285770.0abdb8",
+        "name": "",
+        "url": "/order",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130.26666259765625,
+        "y": 500.01666259765625,
+        "wires": [
+            [
+                "a16457fd.ae38b8",
+                "15446262.9eb6de",
+                "78c1501a.329bb",
+                "a4e245f3.3de468",
+                "74b12452.94b64c"
+            ]
+        ]
+    },
+    {
+        "id": "51a9159a.0eeb0c",
+        "type": "ui_ui_control",
+        "z": "65285770.0abdb8",
+        "name": "",
+        "x": 260,
+        "y": 728,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "74b12452.94b64c",
+        "type": "change",
+        "z": "65285770.0abdb8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "App_Page",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 162,
+        "y": 609,
+        "wires": [
+            [
+                "51a9159a.0eeb0c"
+            ]
+        ]
+    },
+    {
+        "id": "f8767680.907618",
+        "type": "ui_group",
+        "z": "",
+        "name": "List",
+        "tab": "a65bba6.da52748",
+        "order": 2,
+        "disp": false,
+        "width": "18",
+        "collapse": false
+    },
+    {
+        "id": "c8d6733b.9f819",
+        "type": "ui_group",
+        "z": "",
+        "name": "Third_Page",
+        "tab": "3b472d27.7fe542",
+        "order": 3,
+        "disp": false,
+        "width": "2",
+        "collapse": false
+    },
+    {
+        "id": "d49a9e73.ca2f4",
+        "type": "ui_group",
+        "z": "",
+        "name": "Second_Page",
+        "tab": "3b472d27.7fe542",
+        "order": 2,
+        "disp": false,
+        "width": "8",
+        "collapse": false
+    },
+    {
+        "id": "9eb7e522.bd4198",
+        "type": "ui_group",
+        "z": "",
+        "name": "First_Page",
+        "tab": "3b472d27.7fe542",
+        "order": 1,
+        "disp": false,
+        "width": "3",
+        "collapse": false
+    },
+    {
+        "id": "a65bba6.da52748",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard"
+    },
+    {
+        "id": "3b472d27.7fe542",
+        "type": "ui_tab",
+        "z": "",
+        "name": "App_Page",
+        "icon": "dashboard"
+    }
+]

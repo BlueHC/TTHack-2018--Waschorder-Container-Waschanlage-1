@@ -1,0 +1,214 @@
+[
+    {
+        "id": "22d2810e.127f0e",
+        "type": "camerapi-takephoto",
+        "z": "a6845fdd.31e05",
+        "filemode": "0",
+        "filename": "",
+        "filedefpath": "1",
+        "filepath": "",
+        "fileformat": "jpeg",
+        "resolution": "1",
+        "rotation": "0",
+        "fliph": "0",
+        "flipv": "0",
+        "brightness": "50",
+        "contrast": "0",
+        "sharpness": "0",
+        "imageeffect": "none",
+        "name": "",
+        "x": 484,
+        "y": 331,
+        "wires": [
+            [
+                "9f5c1b17.b708a8"
+            ]
+        ]
+    },
+    {
+        "id": "9f5c1b17.b708a8",
+        "type": "function",
+        "z": "a6845fdd.31e05",
+        "name": "",
+        "func": "msg.headers =  {\n    \"Ocp-Apim-Subscription-Key\" : \"a48854b244194f8ba92d0ce31af04aa2\",\n    \"Content-Type\" : \"application/octet-stream\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 673,
+        "y": 330.5,
+        "wires": [
+            [
+                "e36ea6ad.22dcb8"
+            ]
+        ]
+    },
+    {
+        "id": "e36ea6ad.22dcb8",
+        "type": "http request",
+        "z": "a6845fdd.31e05",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://westeurope.api.cognitive.microsoft.com/vision/v1.0/ocr?language=de&detectOrientation =false",
+        "tls": "",
+        "x": 844,
+        "y": 331.5,
+        "wires": [
+            [
+                "39fa1ec5.5f1a92"
+            ]
+        ]
+    },
+    {
+        "id": "748bf51e.28698c",
+        "type": "debug",
+        "z": "a6845fdd.31e05",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 852,
+        "y": 425,
+        "wires": []
+    },
+    {
+        "id": "1356a704.db4bd9",
+        "type": "inject",
+        "z": "a6845fdd.31e05",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 363,
+        "y": 241.5,
+        "wires": [
+            [
+                "22d2810e.127f0e"
+            ]
+        ]
+    },
+    {
+        "id": "39fa1ec5.5f1a92",
+        "type": "json",
+        "z": "a6845fdd.31e05",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 469.5,
+        "y": 423.5,
+        "wires": [
+            [
+                "7d80d86e.619b38"
+            ]
+        ]
+    },
+    {
+        "id": "7d80d86e.619b38",
+        "type": "change",
+        "z": "a6845fdd.31e05",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.regions[0].lines[0].words[0].text",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 647,
+        "y": 424.5,
+        "wires": [
+            [
+                "748bf51e.28698c"
+            ]
+        ]
+    },
+    {
+        "id": "9d79d94e.3671c8",
+        "type": "http request",
+        "z": "a6845fdd.31e05",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "https://ibm-hackathon.eu-gb.mybluemix.net/cam",
+        "tls": "",
+        "x": 578,
+        "y": 145.5,
+        "wires": [
+            [
+                "4db91fdc.2eda6"
+            ]
+        ]
+    },
+    {
+        "id": "5c4fcf81.a1357",
+        "type": "inject",
+        "z": "a6845fdd.31e05",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 395,
+        "y": 146,
+        "wires": [
+            [
+                "9d79d94e.3671c8"
+            ]
+        ]
+    },
+    {
+        "id": "b878b590.0c7d18",
+        "type": "switch",
+        "z": "a6845fdd.31e05",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 522,
+        "y": 227,
+        "wires": [
+            [
+                "22d2810e.127f0e"
+            ]
+        ]
+    },
+    {
+        "id": "4db91fdc.2eda6",
+        "type": "debug",
+        "z": "a6845fdd.31e05",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 826,
+        "y": 136,
+        "wires": []
+    }
+]
